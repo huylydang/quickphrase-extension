@@ -1,0 +1,27 @@
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archives
+*.zip
+*.crx
+*.pem
+
+# Node (in case someone installs deps)
+node_modules/
+
+# Internal / sensitive
+.agents/
+.gemini/
+docs/
+quickphrase-requirements.md

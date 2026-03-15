@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickPhrase — Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <img src="../icons/icon-48.png" alt="QuickPhrase" class="logo-img">
+        <h1 class="title">QuickPhrase Settings</h1>
+      </div>
+      <span class="version">v1.0.0</span>
+    </header>
+
+    <!-- ─── API Configuration ─── -->
+    <section class="card">
+      <div class="card-header">
+        <svg class="card-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h2 class="card-title">API Configuration</h2>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="provider">AI Provider</label>
+        <select id="provider" class="select">
+          <option value="gemini">Gemini (Google)</option>
+          <option value="groq">Groq</option>
+          <option value="openai">OpenAI</option>
+          <option value="custom">Custom (OpenAI-compatible)</option>
+        </select>
+      </div>
+
+      <div class="field" id="custom-endpoint-field" style="display: none;">
+        <label class="field-label" for="custom-endpoint">Custom API Endpoint</label>
+        <input type="url" id="custom-endpoint" class="input" placeholder="https://your-api.com/v1/chat/completions">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="api-key">API Key</label>
+        <div class="input-group">
+          <input type="password" id="api-key" class="input input-flex" placeholder="Enter your API key" autocomplete="off">
+          <button class="btn btn-icon" id="toggle-key" title="Show/hide key">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="field-hint" id="api-hint"></div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="model">Model</label>
+        <select id="model" class="select"></select>
+      </div>
+
+      <button class="btn btn-test" id="btn-test">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span id="test-text">Test Connection</span>
+      </button>
+      <div class="test-result" id="test-result"></div>
+    </section>
+
+    <!-- ─── Paraphrase Styles ─── -->
+    <section class="card">
+      <div class="card-header">
+        <svg class="card-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <h2 class="card-title">Paraphrase Styles</h2>
+      </div>
+
+      <p class="field-desc" style="margin-bottom: 14px;">
+        Customize your paraphrase styles. Click the star to set a default. The default style is used when you click "QuickPhrase" directly from the context menu.
+      </p>
+
+      <div class="styles-list" id="styles-list">
+        <!-- Styles are rendered dynamically by settings.js -->
+      </div>
+
+      <button class="btn-add-style" id="btn-add-style">+ Add Custom Style</button>
+    </section>
+
+    <!-- ─── General ─── -->
+    <section class="card">
+      <div class="card-header">
+        <svg class="card-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <h2 class="card-title">General</h2>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="output-language">Output Language</label>
+        <p class="field-desc">Language for the paraphrased text. "Auto" matches the input text language.</p>
+        <select id="output-language" class="select">
+          <option value="auto">Auto-detect</option>
+          <option value="en">English</option>
+          <option value="vi">Vietnamese</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="zh">Chinese</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ─── Save ─── -->
+    <div class="save-bar">
+      <div class="save-status" id="save-status"></div>
+      <button class="btn btn-save" id="btn-save">
+        Save Settings
+      </button>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+/* QuickPhrase — Content CSS
+ * This file is loaded alongside content.js but the actual popup styles
+ * are injected inside the Shadow DOM (see content.js getPopupStyles()).
+ * This file only contains the host element reset to prevent page CSS interference.
+ */
+
+#quickphrase-host {
+  all: initial !important;
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  pointer-events: none !important;
+}
